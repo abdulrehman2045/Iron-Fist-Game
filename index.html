@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRON FIST - Fighting Championship</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- INTRO SCREEN -->
+<div id="introScreen" class="screen active">
+  <div class="intro-bg">
+    <div class="stars"></div>
+    <div class="intro-content">
+      <div class="game-logo">
+        <div class="logo-top">IRON</div>
+        <div class="logo-bottom">FIST</div>
+        <div class="logo-sub">FIGHTING CHAMPIONSHIP</div>
+      </div>
+      <div class="intro-flames"></div>
+      <button id="startBtn" class="btn-start">PRESS START</button>
+      <div class="controls-hint">
+        <span>← → Move</span>
+        <span>z - Punch</span>
+        <span>x - Kick</span>
+        <span>c - Special</span>
+        <span>W - Jump</span>
+        <span>↓ - Block</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHARACTER SELECT -->
+<div id="charSelect" class="screen">
+  <div class="select-bg">
+    <h2 class="select-title">SELECT YOUR FIGHTER</h2>
+    <div class="characters-grid">
+      <div class="char-card" data-char="0">
+        <div class="char-sprite ryu-select"></div>
+        <div class="char-name">DRAGON</div>
+        <div class="char-style">Karate Master</div>
+        <div class="char-stats">
+          <div class="stat"><span>STR</span><div class="bar" style="width:85%"></div></div>
+          <div class="stat"><span>SPD</span><div class="bar" style="width:70%"></div></div>
+          <div class="stat"><span>DEF</span><div class="bar" style="width:75%"></div></div>
+        </div>
+      </div>
+      <div class="char-card" data-char="1">
+        <div class="char-sprite jin-select"></div>
+        <div class="char-name">PHANTOM</div>
+        <div class="char-style">Shadow Warrior</div>
+        <div class="char-stats">
+          <div class="stat"><span>STR</span><div class="bar" style="width:75%"></div></div>
+          <div class="stat"><span>SPD</span><div class="bar" style="width:90%"></div></div>
+          <div class="stat"><span>DEF</span><div class="bar" style="width:65%"></div></div>
+        </div>
+      </div>
+      <div class="char-card" data-char="2">
+        <div class="char-sprite king-select"></div>
+        <div class="char-name">TITAN</div>
+        <div class="char-style">Iron Wrestler</div>
+        <div class="char-stats">
+          <div class="stat"><span>STR</span><div class="bar" style="width:95%"></div></div>
+          <div class="stat"><span>SPD</span><div class="bar" style="width:55%"></div></div>
+          <div class="stat"><span>DEF</span><div class="bar" style="width:90%"></div></div>
+        </div>
+      </div>
+    </div>
+    <p class="select-hint">Click a character to select</p>
+  </div>
+</div>
+
+<!-- GAME SCREEN -->
+<div id="gameScreen" class="screen">
+  <!-- HUD -->
+  <div class="hud">
+    <div class="player-hud left-hud">
+      <div class="fighter-name" id="p1Name">DRAGON</div>
+      <div class="health-bar-wrap">
+        <div class="health-bar" id="p1Health"></div>
+      </div>
+      <div class="round-dots" id="p1Rounds">
+        <span class="dot"></span><span class="dot"></span>
+      </div>
+    </div>
+
+    <div class="center-hud">
+      <div class="round-badge" id="roundBadge">ROUND 1</div>
+      <div class="timer" id="timer">60</div>
+    </div>
+
+    <div class="player-hud right-hud">
+      <div class="fighter-name" id="p2Name">BOT</div>
+      <div class="health-bar-wrap">
+        <div class="health-bar" id="p2Health"></div>
+      </div>
+      <div class="round-dots" id="p2Rounds">
+        <span class="dot"></span><span class="dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIGHT ARENA -->
+  <div class="arena" id="arena">
+    <div class="arena-bg"></div>
+    <div class="arena-floor"></div>
+    <div class="crowd-layer"></div>
+    <div class="lights-layer"></div>
+
+    <!-- Player 1 -->
+    <div class="fighter" id="player1">
+      <div class="fighter-shadow"></div>
+      <div class="fighter-body p1-body" id="p1Body">
+        <div class="fighter-visual p1-visual">
+          <!-- Head -->
+          <div class="f-head">
+            <div class="f-face"></div>
+            <div class="f-hair"></div>
+            <div class="f-headband"></div>
+          </div>
+          <!-- Torso -->
+          <div class="f-torso">
+            <div class="f-gi"></div>
+            <div class="f-belt"></div>
+          </div>
+          <!-- Arms -->
+          <div class="f-arm left-arm">
+            <div class="f-forearm"></div>
+            <div class="f-fist"></div>
+          </div>
+          <div class="f-arm right-arm">
+            <div class="f-forearm"></div>
+            <div class="f-fist"></div>
+          </div>
+          <!-- Legs -->
+          <div class="f-legs">
+            <div class="f-leg left-leg">
+              <div class="f-shin"></div>
+              <div class="f-foot"></div>
+            </div>
+            <div class="f-leg right-leg">
+              <div class="f-shin"></div>
+              <div class="f-foot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Player 2 (Bot) -->
+    <div class="fighter" id="player2">
+      <div class="fighter-shadow"></div>
+      <div class="fighter-body p2-body" id="p2Body">
+        <div class="fighter-visual p2-visual">
+          <div class="f-head">
+            <div class="f-face p2-face"></div>
+            <div class="f-hair p2-hair"></div>
+            <div class="f-mask"></div>
+          </div>
+          <div class="f-torso">
+            <div class="f-gi p2-gi"></div>
+            <div class="f-belt p2-belt"></div>
+          </div>
+          <div class="f-arm left-arm">
+            <div class="f-forearm p2-forearm"></div>
+            <div class="f-fist p2-fist"></div>
+          </div>
+          <div class="f-arm right-arm">
+            <div class="f-forearm p2-forearm"></div>
+            <div class="f-fist p2-fist"></div>
+          </div>
+          <div class="f-legs">
+            <div class="f-leg left-leg">
+              <div class="f-shin p2-shin"></div>
+              <div class="f-foot p2-foot"></div>
+            </div>
+            <div class="f-leg right-leg">
+              <div class="f-shin p2-shin"></div>
+              <div class="f-foot p2-foot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hit FX -->
+    <div class="hit-fx" id="hitFx"></div>
+    <div class="special-fx" id="specialFx"></div>
+  </div>
+
+  <!-- Move display -->
+  <div class="move-display" id="moveDisplay"></div>
+
+  <!-- Mobile controls -->
+  <div class="mobile-controls">
+    <div class="mob-left">
+      <button class="mob-btn" id="mob-left">◀</button>
+      <button class="mob-btn" id="mob-right">▶</button>
+      <button class="mob-btn" id="mob-block">🛡</button>
+    </div>
+    <div class="mob-right">
+      <button class="mob-btn punch" id="mob-punch">👊 PUNCH</button>
+      <button class="mob-btn kick" id="mob-kick">🦵 KICK</button>
+      <button class="mob-btn special" id="mob-special">⚡ SPECIAL</button>
+    </div>
+  </div>
+</div>
+
+<!-- ROUND ANNOUNCEMENT OVERLAY -->
+<div class="overlay" id="overlay">
+  <div class="overlay-text" id="overlayText">FIGHT!</div>
+</div>
+
+<!-- VICTORY SCREEN -->
+<div id="victoryScreen" class="screen">
+  <div class="victory-bg">
+    <div class="victory-content">
+      <div class="victory-title" id="victoryTitle">PLAYER WINS!</div>
+      <div class="victory-char" id="victoryChar"></div>
+      <div class="victory-msg" id="victoryMsg">PERFECT WARRIOR</div>
+      <div class="score-display" id="scoreDisplay"></div>
+      <button id="rematchBtn" class="btn-rematch">REMATCH</button>
+      <button id="menuBtn" class="btn-menu">MAIN MENU</button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
